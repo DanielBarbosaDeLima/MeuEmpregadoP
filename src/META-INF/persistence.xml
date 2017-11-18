@@ -7,6 +7,8 @@
 	<class>com.meuempregado.model.ContratoSeguro</class>
 	<class>com.meuempregado.model.PacoteSeguro</class>
 	<class>com.meuempregado.model.Empregador</class>
+	<class>com.meuempregado.model.Mensagem</class>
+	<class>com.meuempregado.model.ContratoDemissao</class>
 		
 		<properties>
 

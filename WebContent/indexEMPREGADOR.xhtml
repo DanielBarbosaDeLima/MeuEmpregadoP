@@ -33,8 +33,7 @@
 						<div class="col-md-12 col-sm-12 col-xs-12">
 							<div class="x_panel">
 								<div class="x_title">
-								 	<img style="float: left" src="resources/images/bradesco.png" alt=""/>
-									<h2>&nbsp; Lista de Contratos de Seguro de Vida</h2>
+									<h2 style="text-align: center">Pessoas Disponíveis</h2>
 									<ul class="nav navbar-right panel_toolbox">
 										<li><a class="collapse-link"><i
 												class="fa fa-chevron-up"></i></a></li>
@@ -52,10 +51,32 @@
 								<div class="x_content">
 									<br />
 									<!-- INSIRA SEU <form> -->
+									<div class="container">
+
+									<hr />
 									<f:view>
-										<h:form id="form">
-											<h:dataTable id="tabela" styleClass="table table-striped"
-												var="c" value="#{contratoSeguroManagedBean.contratos}">
+										<h:form styleClass="form-inline">
+											<div id="actions" class="search">
+												<div class="col-md-12">
+													<h:outputLabel for="searchName" value="Cidade:" />
+
+													<h:inputText id="searchName"
+														styleClass="form-control mb-4 mr-sm-4 mb-sm-0"
+														value="#{empregadoManagedBean.empregado.cidade}" />
+
+													<h:commandButton styleClass="btn btn-primary"
+														value="Pesquisar"
+														action="#{empregadoManagedBean.searchByCidadeAction}" />
+
+													<h:commandButton styleClass="btn btn-primary"
+														value="Listar Tudo"
+														action="#{empregadoManagedBean.ListarTudo}" />
+												</div>
+											</div>
+										</h:form>
+										<h:form>
+											<h:dataTable styleClass="table table-striped" var="c"
+												value="#{empregadoManagedBean.listEmpregado}">
 												<h:column>
 													<f:facet name="header">
 														<h:outputLabel value="Id" />
@@ -64,63 +85,46 @@
 												</h:column>
 												<h:column>
 													<f:facet name="header">
-														<h:outputLabel value="Funcionário" />
+														<h:outputLabel value="Nome" />
 													</f:facet>
-													<h:outputText value="#{c.nome_funcionario}" />
+													<h:outputText value="#{c.nomeCompleto}" />
 												</h:column>
 												<h:column>
 													<f:facet name="header">
-														<h:outputLabel value="Cpf do funcionário" />
+														<h:outputLabel value="Email" />
 													</f:facet>
-													<h:outputText value="#{c.cpf_funcionario}" />
+													<h:outputText value="#{c.email}" />
 												</h:column>
+
 												<h:column>
 													<f:facet name="header">
-														<h:outputLabel value="Pacote" />
+														<h:outputLabel value="Cidade" />
 													</f:facet>
-													<h:outputText value="#{c.nome_pacote}" />
+													<h:outputText value="#{c.cidade}" />
 												</h:column>
+
+
 												<h:column>
 													<f:facet name="header">
-														<h:outputLabel value="Cobertura" />
+														<h:outputLabel value="Descricao" />
 													</f:facet>
-													<h:outputText value="#{c.cobertura_pacote}" />
+													<h:outputText value="#{c.descricao}" />
 												</h:column>
+
 												<h:column>
-													<f:facet name="header">
-														<h:outputLabel value="Empregado" />
-													</f:facet>
-													<h:outputText value="#{c.nome_empregador}" />
+													<h:commandLink styleClass="btn btn-sm btn-success"
+														value="Visualizar Perfil"
+														action="showEMPREGADO?faces-redirect=true">
+														<f:setPropertyActionListener
+															target="#{empregadoManagedBean.empregado}" value="#{c}" />
+													</h:commandLink>
+
 												</h:column>
-												<h:column>
-													<f:facet name="header">
-														<h:outputLabel value="Função:" />
-													</f:facet>
-													<h:outputText value="#{c.vaga_empregador}" />
-												</h:column>
-												<h:column>
-													<f:facet name="header">
-														<h:outputLabel value="Imprimir" />
-													</f:facet>
-													<h:form>
-														<h:commandLink styleClass="btn btn-sm btn-success"
-															value="Imprimir" action="#{contratoSeguroManagedBean.Imprimir}">
-															<f:setPropertyActionListener target="#{contratoSeguroManagedBean.contrato}" value="#{c}" />
-														</h:commandLink>
-													</h:form>
-												</h:column>
-												<h:column>
-												<f:facet name="header">
-														<h:outputLabel value="Restringir" />
-													</f:facet>
-												<h:commandLink styleClass="btn btn-sm btn-danger"
-													value="Restringir" action="RestringirContratoSeguro?faces-redirect=true">
-													<f:setPropertyActionListener target="#{contratoSeguroManagedBean.contrato}" value="#{c}" />
-												</h:commandLink>
-											</h:column>
 											</h:dataTable>
+
 										</h:form>
-									</f:view>
+									</f:view> 
+									</div>
 									<!-- INSIRA SEU </form> -->
 								</div>
 							</div>

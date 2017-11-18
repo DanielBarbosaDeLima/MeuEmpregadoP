@@ -8,11 +8,10 @@ import javax.faces.bean.SessionScoped;
 
 import com.meuempregado.model.ContratoSeguro;
 import com.meuempregado.model.Empregado;
-import com.meuempregado.model.Empregador;
+import com.meuempregado.model.Mensagem;
 import com.meuempregado.model.PacoteSeguro;
 import com.meuempregado.service.ContratoSeguroService;
 import com.meuempregado.service.EmpregadoService;
-import com.meuempregado.service.EmpregadorService;
 import com.meuempregado.service.PacoteSeguroService;
 
 @ManagedBean(name = "contratoSeguroManagedBean")
@@ -24,8 +23,8 @@ public class ContratoSeguroManagedBean implements Serializable{
 	private List<ContratoSeguro> contratos;
 	private ContratoSeguroService service;
 	
-	private Integer idEmpregado;
-	private Integer idEmpregador;
+    private Integer idempregado;
+    private Mensagem mensagem = new Mensagem(); 
 	
 	public ContratoSeguroManagedBean(){
 		atualizar();
@@ -43,16 +42,10 @@ public class ContratoSeguroManagedBean implements Serializable{
 		service.excluir(contrato);
 		atualizar();
 	}
-	public String addEmpregadoAction(){
+	public void addEmpregadoAction(){
 		
-	    EmpregadoService empregadoservice = new EmpregadoService();
-	    Empregado empregado = new Empregado();
-	    
-	    EmpregadorService service = new EmpregadorService();
-	    Empregador empregador = new Empregador();
-	    
-	    empregador = service.buscarId(idEmpregador);
-		empregado = empregadoservice.buscarId(idEmpregado);
+		EmpregadoService service = new EmpregadoService();
+		Empregado empregado = service.buscarId(idempregado);
 		
 		contrato.setRg_funcionario(empregado.getRg());
 		contrato.setNome_funcionario(empregado.getNomeCompleto());
@@ -61,14 +54,12 @@ public class ContratoSeguroManagedBean implements Serializable{
 		contrato.setCep_funcionario(empregado.getCep());
 		contrato.setCidade_funcionario(empregado.getCidade());
 		contrato.setUf_funcionario(empregado.getUf());
-		contrato.setFuncao_funcionario(empregado.getFuncao());
 		
-		contrato.setNome_empregador(empregador.getNomeCompleto());
-		contrato.setCpf_empregador(empregador.getCpf());
-		
-		return "contratoPacoteSeguro";
+		contrato.setNome_empregador(mensagem.getNomeempresa());
+		contrato.setVaga_empregador(mensagem.getVaga());
 	}
 	public String addPacote1(){
+		addEmpregadoAction();
 		PacoteSeguroService pacoteservice = new PacoteSeguroService();
 		PacoteSeguro pacote = pacoteservice.buscarId(1);
 		
@@ -77,12 +68,15 @@ public class ContratoSeguroManagedBean implements Serializable{
 		contrato.setDescricao_pacote(pacote.getDescricao());
 		contrato.setIndenizacao_pacote(pacote.getIndenizacao());
 		contrato.setValorMensal_pacote(pacote.getValorMensal());
+		
+		contrato.setAtivo(true);
 		service.cadastrar(contrato);
 		
 		atualizar();
-		return "listaContratoSeguro";
+		return "novaMensagemEMPREGADO";
 	}
 	public String addPacote2(){
+		addEmpregadoAction();
 		PacoteSeguroService pacoteservice = new PacoteSeguroService();
 		PacoteSeguro pacote = pacoteservice.buscarId(2);
 		
@@ -91,12 +85,14 @@ public class ContratoSeguroManagedBean implements Serializable{
 		contrato.setDescricao_pacote(pacote.getDescricao());
 		contrato.setIndenizacao_pacote(pacote.getIndenizacao());
 		contrato.setValorMensal_pacote(pacote.getValorMensal());
+		contrato.setAtivo(true);
 		service.cadastrar(contrato);
 		
 		atualizar();
-		return "listaContratoSeguro";
+		return "novaMensagemEMPREGADO";
 	}
 	public String addPacote3(){
+		addEmpregadoAction();
 		PacoteSeguroService pacoteservice = new PacoteSeguroService();
 		PacoteSeguro pacote = pacoteservice.buscarId(3);
 		
@@ -105,10 +101,25 @@ public class ContratoSeguroManagedBean implements Serializable{
 		contrato.setDescricao_pacote(pacote.getDescricao());
 		contrato.setIndenizacao_pacote(pacote.getIndenizacao());
 		contrato.setValorMensal_pacote(pacote.getValorMensal());
+		contrato.setAtivo(true);
 		service.cadastrar(contrato);
 		
 		atualizar();
+		return "novaMensagemEMPREGADO";
+	}
+	public String cancelar(){
+		atualizar();
+		return "novaMensagemEMPREGADO";
+	}
+	public String restringir(){
+		contrato.setAtivo(false);
+		service.atulizar(contrato);
+		
+		atualizar();
 		return "listaContratoSeguro";
+	}
+	public void Imprimir(){
+		service.imprimir(contrato);
 	}
 	public ContratoSeguro getContrato() {
 		return contrato;
@@ -128,22 +139,21 @@ public class ContratoSeguroManagedBean implements Serializable{
 	public void setService(ContratoSeguroService service) {
 		this.service = service;
 	}
-	public Integer getIdEmpregado() {
-		return idEmpregado;
-	}
-	public void setIdEmpregado(Integer idEmpregado) {
-		this.idEmpregado = idEmpregado;
-	}
-	public Integer getIdEmpregador() {
-		return idEmpregador;
-	}
-	public void setIdEmpregador(Integer idEmpregador) {
-		this.idEmpregador = idEmpregador;
-	}
 	public void atualizar(){
 		contrato = new ContratoSeguro();
 		service = new ContratoSeguroService();
 		contratos = service.listar();
 	}
-	
+	public Mensagem getMensagem() {
+		return mensagem;
+	}
+	public void setMensagem(Mensagem mensagem) {
+		this.mensagem = mensagem;
+	}
+	public Integer getIdempregado() {
+		return idempregado;
+	}
+	public void setIdempregado(Integer idempregado) {
+		this.idempregado = idempregado;
+	}
 }

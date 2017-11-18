@@ -10,11 +10,9 @@ public class EmpregadorService {
 	public void cadastrar(Empregador e){
 		FactoryDao.createGenericDao(Empregador.class).inserir(e);
 	}
-	
 	public List<Empregador>listar(){
 		return FactoryDao.createGenericDao(Empregador.class).listarTodos();
 	}
-	
 	public void excluir(Empregador e){
 		FactoryDao.createGenericDao(Empregador.class).excluir(e.getId());
 	}

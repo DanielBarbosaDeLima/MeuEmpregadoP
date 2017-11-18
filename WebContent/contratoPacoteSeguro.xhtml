@@ -33,7 +33,8 @@
 						<div class="col-md-12 col-sm-12 col-xs-12">
 							<div class="x_panel">
 								<div class="x_title">
-									<h2>Contrato de Seguro de Vida</h2>
+									<img style="float: left" src="resources/images/bradesco.png" alt=""/>
+									<h2>&nbsp; Contrato de Seguro de Vida</h2>
 									<ul class="nav navbar-right panel_toolbox">
 										<li><a class="collapse-link"><i
 												class="fa fa-chevron-up"></i></a></li>
@@ -51,43 +52,6 @@
 								<div class="x_content">
 									<br />
 									<!-- INSIRA SEU <form> -->
-									<!-- Empregado -->
-									<h2>Dados do Funcionário</h2>
-									<div class="col-md-4 col-sm-6 col-xs-12">
-										<h:outputLabel value="Funcionario:" />
-										<h:inputText disabled="true" styleClass="form-control"
-											value="#{contratoSeguroManagedBean.contrato.nome_funcionario}" />
-									</div>
-									<div class="col-md-4 col-sm-6 col-xs-12">
-										<h:outputLabel value="Cpf:" />
-										<h:inputText disabled="true" styleClass="form-control"
-											value="#{contratoSeguroManagedBean.contrato.cpf_funcionario}" />
-									</div>
-									<div class="col-md-4 col-sm-6 col-xs-12">
-										<h:outputLabel value="Profissão:" />
-										<h:inputText disabled="true" styleClass="form-control"
-											value="#{contratoSeguroManagedBean.contrato.funcao_funcionario}" />
-									</div>
-									<br />
-									<br />
-									<br />
-									<br />
-									<!-- Empregador -->
-									<h2>Dados do Empregador</h2>
-									<div class="col-md-6 col-sm-6 col-xs-12">
-										<h:outputLabel value="Empregador" />
-										<h:inputText disabled="true" styleClass="form-control"
-											value="#{contratoSeguroManagedBean.contrato.nome_empregador}" />
-									</div>
-									<div class="col-md-6 col-sm-6 col-xs-12">
-										<h:outputLabel value="Cpf:" />
-										<h:inputText disabled="true" styleClass="form-control"
-											value="#{contratoSeguroManagedBean.contrato.cpf_empregador}" />
-									</div>
-									<br />
-									<br />
-									<br />
-									<br />
 									<h1 style="text-align: center">Planos de Seguro de Vida</h1>
 									<br />
 									<h:form>
@@ -129,7 +93,10 @@
 													<div class="pricing_footer">
 														<h:commandButton styleClass="btn btn-success btn-block"
 															value="Contratar"
-															action="#{contratoSeguroManagedBean.addPacote1}" />
+															action="#{contratoSeguroManagedBean.addPacote1}" >
+															<f:setPropertyActionListener
+															target="#{mensagemManagedBean.mensagem.idContratoSeguro}" value="1" />
+														</h:commandButton>
 													</div>
 												</div>
 											</div>
@@ -172,7 +139,10 @@
 													<div class="pricing_footer">
 														<h:commandButton styleClass="btn btn-primary btn-block"
 															value="Contratar"
-															action="#{contratoSeguroManagedBean.addPacote2}" />
+															action="#{contratoSeguroManagedBean.addPacote2}" >
+															<f:setPropertyActionListener
+															target="#{mensagemManagedBean.mensagem.idContratoSeguro}" value="1" />
+														</h:commandButton>
 													</div>
 												</div>
 											</div>
@@ -218,10 +188,21 @@
 													<div class="pricing_footer">
 														<h:commandButton styleClass="btn btn-success btn-block"
 															value="Contratar"
-															action="#{contratoSeguroManagedBean.addPacote3}" />
+															action="#{contratoSeguroManagedBean.addPacote3}" >
+															<f:setPropertyActionListener
+															target="#{mensagemManagedBean.mensagem.idContratoSeguro}" value="1" />
+														</h:commandButton>
 													</div>
 												</div>
 											</div>
+										</div>
+										<div class="col-md-4 col-sm-6 col-xs-12">
+											<h:commandButton styleClass="btn btn-sm btn-danger"
+												value="Cancelar"
+												action="#{contratoSeguroManagedBean.cancelar}" >
+												<f:setPropertyActionListener
+												target="#{mensagemManagedBean.mensagem.ofereceSeguro}" value="#{false}" />
+											</h:commandButton>
 										</div>
 									</h:form>
 									<!-- INSIRA SEU </form> -->
