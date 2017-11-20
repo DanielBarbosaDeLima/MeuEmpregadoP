@@ -1,6 +1,7 @@
 package com.meuempregado.test;
 
 import java.util.Date;
+import java.util.List;
 
 import org.junit.Test;
 
@@ -20,21 +21,11 @@ import com.meuempregado.service.TipoDemissaoService;
 public class Test_Cadastro {
 	@Test
 	public void cadastrarEmpregados(){
-		/*EmpregadoService empregadoservice = new EmpregadoService();
-		Empregado empregado = new Empregado(null,"Adriano",(new Date()),"333.333.333-33","33.333.333-3","1111-1111","1111-1111","11111-111","José Rodrigues Pinheiro",2261,"Sobrado A","CIC","Araucária","PR",true,true,"Trabalhando como Eletricista","daniel@gmail.com","1234");
-		empregadoservice.cadastrar(empregado);*/
+		ContratoSeguroService service = new ContratoSeguroService();
+		ContratoSeguroManagedBean bean = new ContratoSeguroManagedBean();
+		List<ContratoSeguro> list = service.listar();
 		
-		/*EmpregadorService empregadorservice = new EmpregadorService();
-		Empregador empregador = new Empregador(null,"Helcio","444.444.444.44");
-		empregadorservice.cadastrar(empregador)*/
-		//ContratoSeguroManagedBean service = new ContratoSeguroManagedBean();
-		//Mensagem ms = new Mensagem(null,"João", "email","josé","rua","baba","Thiago","111","1000","vt","16/11/2017",null,true);
-		//service.setMensagem(ms);
-		//System.out.println(service.addPacote1());
-		TipoDemissaoService service = new TipoDemissaoService();
-		ContratoDemissao c = new ContratoDemissao(null,"20/11/2017",3000,500,5000,4,"não","sim","justa");
-		
-		service.cadastrar(c);
-		
+		bean.setContrato(list.get(0));
+		bean.imprimir();
 	}
 }

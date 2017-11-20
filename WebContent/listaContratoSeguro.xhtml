@@ -102,12 +102,10 @@
 													<f:facet name="header">
 														<h:outputLabel value="Imprimir" />
 													</f:facet>
-													<h:form>
-														<h:commandLink styleClass="btn btn-sm btn-success"
-															value="Imprimir" action="#{contratoSeguroManagedBean.Imprimir}">
-															<f:setPropertyActionListener target="#{contratoSeguroManagedBean.contrato}" value="#{c}" />
-														</h:commandLink>
-													</h:form>
+													<h:commandLink styleClass="btn btn-sm btn-success"
+														value="Imprimir" action="#{contratoSeguroManagedBean.imprimir}">
+														<f:setPropertyActionListener target="#{contratoSeguroManagedBean.contrato}" value="#{c}" />
+													</h:commandLink>
 												</h:column>
 												<h:column>
 												<f:facet name="header">

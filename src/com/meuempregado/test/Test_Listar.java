@@ -19,11 +19,11 @@ public class Test_Listar {
 	@Test
 	public void Listar() throws ClassNotFoundException, SQLException, IOException{
 		
-	PacoteSeguroService service = new PacoteSeguroService();
-	List<PacoteSeguro> pacotes = service.listar();
+	ContratoSeguroService service = new ContratoSeguroService();
+	List<ContratoSeguro> pacotes = service.listar();
 	
-	for(PacoteSeguro p:pacotes){
-		System.out.println(p.getNome());
+	for(ContratoSeguro p:pacotes){
+		System.out.println(p.getNome_funcionario());
 	}
 		
 	}

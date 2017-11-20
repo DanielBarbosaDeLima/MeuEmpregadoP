@@ -30,9 +30,6 @@ public class ContratoSeguroService {
 	public void atulizar(ContratoSeguro cs){
 		FactoryDao.createGenericDao(ContratoSeguro.class).alterar(cs);
 	}
-	public void imprimir(ContratoSeguro cs){
-		cs.imprimir(cs);
-	}
 	public ContratoSeguro buscaId(Integer id){
 		return FactoryDao.createGenericDao(ContratoSeguro.class).buscarPorId(id);
 	}
