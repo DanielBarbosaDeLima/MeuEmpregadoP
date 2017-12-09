@@ -133,7 +133,7 @@
 													<h:commandLink value="Voltar" styleClass="btn btn-primary"
 														action="listamensagemEMPREGADOR?faces-redirect=true" />
 
-													<h:commandLink styleClass="btn btn-primary" value="Deletar"
+													<h:commandLink rendered="#{mensagemManagedBean.mensagem.ativo==false}" styleClass="btn btn-primary" value="Deletar"
 														action="#{mensagemManagedBean.deleteMensagemAction}" />
 													
 													<h:commandLink rendered="#{mensagemManagedBean.mensagem.ativo==true}" value="Demitir" styleClass="btn btn-primary"

@@ -58,9 +58,16 @@ public class TipoDemissaoService {
 		calculo = SaldoSalarial(Salario, dias) + 
 				DecSalarioPropor(Salario, MesesTrabalhados(inicio, fim))
 				+ FeriasSemJusta(vencida, Salario) + 
-				FeriasProporcional(Salario, MesesTrabalhados(inicio, fim));
+				FeriasProporcional(Salario, MesesTrabalhados(inicio, fim)) + Salario + salariocont(Salario);
 
 		return calculo;
+	}
+	
+	public float salariocont(float Salario){
+		float saldo=0;
+		saldo=Salario/3;
+		
+		return saldo;
 	}
 	
 	public float SaldoSalarial(float Salario, int dias){
